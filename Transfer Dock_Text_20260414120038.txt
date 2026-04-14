@@ -1,0 +1,79 @@
+#include <stdio.h>
+
+struct Student {
+    int rollno;
+    char name[50];
+    float percentage;
+};
+
+int main() {
+    struct Student s1[50];
+    int count = 0, choice, i, rollno, found;
+
+    do {
+        printf("\n** Student Menu **\n");
+        printf("1. Add Student\n");
+        printf("2. Display Student\n");
+        printf("3. Search Student\n");
+        printf("4. Exit\n");
+
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch(choice) {
+
+            case 1:
+                printf("enter their Rollno: ");
+                scanf("%d", &s1[count].rollno);
+
+                printf("Enter Name: ");
+                scanf("%s", s1[count].name);
+
+                printf("Enter percentage: ");
+                scanf("%f", &s1[count]. percentage);
+
+                count++;
+                printf("Student Added!\n");
+                break;
+
+            case 2:
+                if(count == 0) {
+                    printf("No students found!\n");
+                } else {
+                    for(i = 0; i < count; i++) {
+                        printf("Rollno: %d | Name: %s | percentage: %.2f\n",
+                               s1[i].rollno, s1[i].name, s1[i]. percentage);
+                    }
+                }
+                break;
+
+            case 3:
+                found = 0;
+                printf("Enter Rollno to search: ");
+                scanf("%d", &rollno);
+
+                for(i = 0; i < count; i++) {
+                    if(s1[i].rollno == rollno) {
+                        printf("Found: %s | percentage: %.2f\n",
+                               s1[i].name, s1[i]. percentage);
+                        found = 1;
+                        break;
+                    }
+                }
+
+                if(found == 0)
+                    printf("Not Found!\n");
+                break;
+
+            case 4:
+                printf("Exiting...\n");
+                break;
+
+            default:
+                printf("Invalid choice!\n");
+        }
+
+    } while(choice != 4);
+
+    return 0;
+}
